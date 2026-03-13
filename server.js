@@ -2,6 +2,7 @@ const express = require("express")
 const app = express()
 const expressLayout = require("express-ejs-layouts")
 
+
 //configuration---defining settings
 app.set('view engine', 'ejs')//what engine to use when rendering templates
 app.set('layout', 'layouts/layout')
@@ -14,6 +15,9 @@ const mongoose = require("mongoose")
 mongoose.connect("mongodb://127.0.0.1:27017/").then(()=> console.log("mongoose connected")).catch((error)=>console.log(error))
 
 const indexRouter = require('./routes/index')
+const authorRouter = require('./routes/authors')
+
 app.use('/', indexRouter)
+app.use('/author', authorRouter)
 
 app.listen(3000)
